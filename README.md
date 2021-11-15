@@ -32,8 +32,13 @@ iOS Link: https://www.icloud.com/photos/#0An6o9s9EVTT_rzcTk5JroM5g
 External Packages 
 
   simple_animations: Used for staggered animation within the app
+  
   supercharged: Used as a support for the simple_animation package.
+  
   intl: Used for date formatting
+  
   get: Used for state management
+  
   cached_network_image: Used to cache network images to drastically reduce data consumption and load time of images
+  
   flutter_svg: Used to parse and display svg files
