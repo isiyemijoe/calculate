@@ -7,7 +7,7 @@ list of Milky Way images taken in 2017.
 
 Language 
 
-This test was written in Flutter because it's what I'm most comfortable with and I'm hoping to convince you to take a look at flutter if you haven't already, I hop I succeed 😄
+This test was written in Flutter because it's what I'm most comfortable with and I'm hoping to convince you to take a look at flutter if you haven't already, I hope I succeed 😄
 
 Architeture
 
