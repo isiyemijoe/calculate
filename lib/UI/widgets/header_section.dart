@@ -7,6 +7,22 @@ import 'package:milky_way/utils/utils.dart';
 
 import '../homepage.dart';
 
+double calculateFontSize(String val, bool isPortrait) {
+  log("Came in with $val and is coporate as $isPortrait");
+  if (val.length < 10) {
+    log("returning ${isPortrait ? 54 : 40}");
+
+    return isPortrait ? 54 : 40;
+  } else if (val.length >= 10 && val.length < 20) {
+    log("returning ${isPortrait ? 30 : 20}");
+
+    return isPortrait ? 30 : 20;
+  }
+  log("returning 10");
+
+  return 15;
+}
+
 class HeaderSection extends StatelessWidget {
   HeaderSection({
     Key? key,
@@ -42,25 +58,32 @@ class HeaderSection extends StatelessWidget {
                           !isPortrait
                               ? ThemeSwitcherWidget()
                               : const SizedBox(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              if (controller.errorText.isNotEmpty)
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: isPortrait ? 8 : 3),
-                                  child: Text(
-                                    controller.errorText.value,
-                                    style: Get.textTheme.bodyText1!
-                                        .copyWith(color: Colors.red),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                if (controller.errorText.isNotEmpty)
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: isPortrait ? 8 : 3),
+                                    child: Flexible(
+                                      child: Text(
+                                        controller.errorText.value,
+                                        style: Get.textTheme.bodyText1!
+                                            .copyWith(color: Colors.red),
+                                      ),
+                                    ),
                                   ),
+                                Text(
+                                  controller.userExp.value,
+                                  style: Get.textTheme.bodyText2!.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: calculateFontSize(
+                                          controller.userExp.value,
+                                          isPortrait)),
                                 ),
-                              Text(
-                                controller.userExp.value,
-                                style: Get.textTheme.bodyText2!.copyWith(
-                                    fontWeight: FontWeight.w500, fontSize: 22),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -73,7 +96,8 @@ class HeaderSection extends StatelessWidget {
                         controller.answer.value,
                         style: Get.textTheme.bodyText2!.copyWith(
                             fontWeight: FontWeight.bold,
-                            fontSize: isPortrait ? 54 : 40),
+                            fontSize: calculateFontSize(
+                                controller.answer.value, isPortrait)),
                       ),
                     )
                   ],
