@@ -29,7 +29,7 @@ class AppConstants {
         type: ButtonType.SVG,
         content: "assets/svgs/division.svg",
         isOperator: true,
-        defaultColor: 2,
+        defaultColor: 3,
         value: "/"),
     ButtonItem(
         type: ButtonType.STRING, content: "7", isOperator: false, value: "7"),
@@ -85,10 +85,7 @@ class AppConstants {
   ];
   static List<ButtonItem> landscapeButtons = <ButtonItem>[
     ButtonItem(
-        type: ButtonType.SVG,
-        value: "R",
-        isOperator: true,
-        content: "assets/svgs/delete.svg"),
+        type: ButtonType.STRING, value: "00", isOperator: true, content: "00"),
     ButtonItem(
         type: ButtonType.STRING, content: "7", isOperator: false, value: "7"),
     ButtonItem(
@@ -100,11 +97,11 @@ class AppConstants {
     ButtonItem(
         type: ButtonType.STRING, value: "0", isOperator: false, content: "0"),
     ButtonItem(
-        type: ButtonType.STRING, value: "6", isOperator: false, content: "6"),
+        type: ButtonType.STRING, value: "4", isOperator: false, content: "4"),
     ButtonItem(
         type: ButtonType.STRING, value: "5", isOperator: false, content: "5"),
     ButtonItem(
-        type: ButtonType.STRING, value: "4", isOperator: false, content: "4"),
+        type: ButtonType.STRING, value: "6", isOperator: false, content: "6"),
     ButtonItem(
         type: ButtonType.STRING, value: ")", isOperator: false, content: ")"),
     ButtonItem(
