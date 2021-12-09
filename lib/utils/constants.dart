@@ -29,7 +29,7 @@ class AppConstants {
         type: ButtonType.SVG,
         content: "assets/svgs/division.svg",
         isOperator: true,
-        defaultColor: 2,
+        defaultColor: 3,
         value: "/"),
     ButtonItem(
         type: ButtonType.STRING, content: "7", isOperator: false, value: "7"),
