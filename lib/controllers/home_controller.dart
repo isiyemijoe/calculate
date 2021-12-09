@@ -29,7 +29,6 @@ class HomePageController extends GetxController {
   }
 
   changeThemeMode(bool isDark, BuildContext context) async {
-    log(isDark.toString());
     if (isDark) {
       Get.changeTheme(AppTheme.iwriteDark);
       Get.changeThemeMode(ThemeMode.dark);
@@ -70,7 +69,6 @@ class HomePageController extends GetxController {
       userExp.value += btn.value;
     } else if (btn.value == "(") {
       if (userExp.value.isEmpty) return;
-      log(userExp.value.substring(userExp.value.length - 1));
       if (!operators
           .hasMatch(userExp.value.substring(userExp.value.length - 1))) {
         userExp.value += "*";
@@ -100,10 +98,8 @@ class HomePageController extends GetxController {
       Parser p = Parser();
 
       Expression res = p.parse(entry).simplify();
-      log(res.toString());
       var result = res.evaluate(EvaluationType.REAL, ContextModel());
       answer.value = result.toString();
-      log(result.toString());
     } catch (e) {
       log(e.toString());
       errorText.value = "Invalid Operation";
