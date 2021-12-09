@@ -7,14 +7,26 @@ import 'package:milky_way/utils/utils.dart';
 
 import '../homepage.dart';
 
-double calculateFontSize(String val, bool isPortrait) {
+double calculateFontSize(String val, bool isPortrait, {bool m = false}) {
   if (val.length < 10) {
-    return isPortrait ? 54 : 40;
+    return isPortrait
+        ? m
+            ? 33
+            : 54
+        : m
+            ? 30
+            : 40;
   } else if (val.length >= 10 && val.length < 20) {
-    return isPortrait ? 30 : 20;
+    return isPortrait
+        ? m
+            ? 28
+            : 35
+        : m
+            ? 25
+            : 30;
   }
 
-  return 15;
+  return m ? 20 : 25;
 }
 
 class HeaderSection extends StatelessWidget {
@@ -73,8 +85,8 @@ class HeaderSection extends StatelessWidget {
                                   style: Get.textTheme.bodyText2!.copyWith(
                                       fontWeight: FontWeight.w500,
                                       fontSize: calculateFontSize(
-                                          controller.userExp.value,
-                                          isPortrait)),
+                                          controller.userExp.value, isPortrait,
+                                          m: true)),
                                 ),
                               ],
                             ),
