@@ -11,6 +11,7 @@ class HomePageController extends GetxController {
   RxString answer = "0".obs;
   RxString errorText = "".obs;
   late Rx<ThemeMode> themeMode;
+  final operators = RegExp(r'^[\-=@,\.;()*+/]$');
 
   static HomePageController get instance => Get.find();
 
@@ -55,10 +56,26 @@ class HomePageController extends GetxController {
     } else if (btn.value == "AC") {
       clear();
       return;
+    } else if (btn.value == "x") {
+      userExp.value += "*";
+
+      return;
     } else if (btn.value == "R") {
       if (userExp.value.isEmpty) return;
 
       userExp.value = userExp.substring(0, userExp.value.length - 1);
+    } else if (btn.value == "00") {
+      if (userExp.value.isEmpty) return;
+
+      userExp.value += btn.value;
+    } else if (btn.value == "(") {
+      if (userExp.value.isEmpty) return;
+      log(userExp.value.substring(userExp.value.length - 1));
+      if (!operators
+          .hasMatch(userExp.value.substring(userExp.value.length - 1))) {
+        userExp.value += "*";
+      }
+      userExp.value += btn.value;
     } else {
       userExp.value += btn.value;
     }
@@ -77,12 +94,16 @@ class HomePageController extends GetxController {
               !entry.substring(entry.indexOf("(")).contains(")") ||
           entry.contains(")") && !entry.contains("("))
         throw UnimplementedError();
-      entry =
-          entry.replaceAll('x', '*').replaceAll("(", "*").replaceAll(")", "");
+
+      entry = entry.replaceAll('x', '*');
 
       Parser p = Parser();
-      double res = p.parse(entry).evaluate(EvaluationType.REAL, ContextModel());
-      answer.value = res.toString();
+
+      Expression res = p.parse(entry).simplify();
+      log(res.toString());
+      var result = res.evaluate(EvaluationType.REAL, ContextModel());
+      answer.value = result.toString();
+      log(result.toString());
     } catch (e) {
       log(e.toString());
       errorText.value = "Invalid Operation";
