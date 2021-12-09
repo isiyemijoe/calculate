@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:milky_way/UI/widgets/header_section.dart';
 import 'package:milky_way/controllers/home_controller.dart';
+import 'package:milky_way/data/models/button_item.dart';
 import 'package:milky_way/utils/utils.dart';
-import 'media_tile.dart';
+
+import 'widgets/keypad.dart';
 
 class HomePage extends StatefulWidget {
   static String routeName = "/homepage";
@@ -14,58 +20,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  HomePageController controller = Get.put(HomePageController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "The Milky Way",
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.black,
-        ),
-        body: GetX<HomePageController>(
-            init: HomePageController(),
-            builder: (controller) {
-              if (controller.loading) {
-                return Center(
-                    child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                ));
-              }
-              if (controller.error != null) {
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.error,
-                          color: Colors.black,
-                          size: Get.height * 0.1,
-                        ),
-                        UIHelper.mediumSpace(),
-                        Text(
-                          controller.error!.value!.message,
-                          textAlign: TextAlign.center,
-                        )
-
-
-                      ],
-                    ),
-                  ),
-                );
-              }
-
-              return ListView.builder(
-                  itemCount: controller.mediaData.length,
-                  itemBuilder: (context, index) {
-                    return MediaTile(
-                      mediaModel: controller.mediaData[index],
-                    );
-                  });
-            }));
+      body: OrientationBuilder(builder: (context, orientation) {
+        return SafeArea(
+            bottom: false,
+            left: orientation == Orientation.portrait,
+            right: orientation == Orientation.portrait,
+            child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+              HeaderSection(
+                controller: controller,
+                isPortrait: orientation == Orientation.portrait,
+              ),
+              orientation == Orientation.portrait
+                  ? PotraitKeypad()
+                  : LandscapeKeypad()
+            ]));
+      }),
+    );
   }
 }

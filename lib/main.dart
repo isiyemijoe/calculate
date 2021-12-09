@@ -6,6 +6,7 @@ import 'package:milky_way/utils/app_theme.dart';
 import 'package:milky_way/utils/uihelper.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -65,7 +66,8 @@ class MyApp extends StatelessWidget {
           return widget!;
         },
         initialRoute: AppRouter.initialRoute,
-        theme: AppTheme.milkyWayTheme,
+        darkTheme: AppTheme.iwriteDark,
+        theme: AppTheme.iwriteLight,
         getPages: AppRouter.routes,
         themeMode: ThemeMode.system);
   }

@@ -41,8 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               child: FadeInAnimations(
                 delay: 0.8,
-                child: SvgPicture.asset("${AppConstants.SVG_PATH}yoyo_logo.svg",
-                    width: Get.width * 0.2, fit: BoxFit.fitHeight),
+                child: SvgPicture.asset(
+                    "${AppConstants.SVG_PATH}Calculator.svg",
+                    width: Get.width * 0.2,
+                    fit: BoxFit.fitHeight),
               ),
             ),
           )),
