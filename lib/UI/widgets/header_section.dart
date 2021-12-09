@@ -8,17 +8,11 @@ import 'package:milky_way/utils/utils.dart';
 import '../homepage.dart';
 
 double calculateFontSize(String val, bool isPortrait) {
-  log("Came in with $val and is coporate as $isPortrait");
   if (val.length < 10) {
-    log("returning ${isPortrait ? 54 : 40}");
-
     return isPortrait ? 54 : 40;
   } else if (val.length >= 10 && val.length < 20) {
-    log("returning ${isPortrait ? 30 : 20}");
-
     return isPortrait ? 30 : 20;
   }
-  log("returning 10");
 
   return 15;
 }
